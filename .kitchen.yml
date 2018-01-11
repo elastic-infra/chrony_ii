@@ -15,6 +15,12 @@ verifier:
 platforms:
   - name: ubuntu-16.04
   - name: centos-7
+  - name: amazonlinux
+    driver:
+      box: mvbcoding/awslinux
+  - name: debian-8
+    driver:
+      box: debian/jessie64
 
 suites:
   - name: default
@@ -24,3 +30,14 @@ suites:
       inspec_tests:
         - test/smoke/default
     attributes:
+  - name: amazon_time
+    run_list:
+      - recipe[chrony_ii::default]
+    verifier:
+      inspec_tests:
+        - test/smoke/amazon_time
+    attributes:
+      chrony_ii:
+        amazon_time_sync_service: true
+    includes:
+      - amazonlinux

@@ -1,6 +1,6 @@
 #
 # Cookbook:: chrony_ii
-# Spec:: default
+# Recipe:: config
 #
 # The MIT License (MIT)
 #
@@ -24,38 +24,28 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-require 'spec_helper'
+config_path = value_for_platform_family(
+  'rhel' => '/etc/chrony.conf',
+  'amazon' => '/etc/chrony.conf',
+  'debian' => '/etc/chrony/chrony.conf'
+)
 
-describe 'chrony_ii::default' do
-  context 'When all attributes are default, on Ubuntu 16.04' do
-    let(:chef_run) do
-      # for a complete list of available platforms and versions see:
-      # https://github.com/customink/fauxhai/blob/master/PLATFORMS.md
-      runner = ChefSpec::ServerRunner.new(
-        platform: 'ubuntu',
-        version: '16.04'
-      )
-      runner.converge(described_recipe)
-    end
-
-    it 'converges successfully' do
-      expect { chef_run }.to_not raise_error
-    end
+config = node[cookbook_name]['config'].to_h.map do |k, v|
+  case v
+  when Array
+    v.map { |vv| [k, vv].join(' ') }.join("\n")
+  else
+    [k, v].join(' ')
   end
+end.join("\n")
 
-  context 'When all attributes are default, on CentOS 7.4.1708' do
-    let(:chef_run) do
-      # for a complete list of available platforms and versions see:
-      # https://github.com/customink/fauxhai/blob/master/PLATFORMS.md
-      runner = ChefSpec::ServerRunner.new(
-        platform: 'centos',
-        version: '7.4.1708'
-      )
-      runner.converge(described_recipe)
-    end
+restart = node[cookbook_name]['config_update_restart']
 
-    it 'converges successfully' do
-      expect { chef_run }.to_not raise_error
-    end
-  end
+template config_path do
+  source 'chrony.conf.erb'
+  owner 'root'
+  group 'root'
+  mode '0644'
+  notifies :restart, 'service[chrony-daemon]' if restart
+  variables config_content: config
 end
