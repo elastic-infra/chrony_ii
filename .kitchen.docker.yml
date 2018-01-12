@@ -26,6 +26,7 @@ platforms:
 suites:
   - name: default
     run_list:
+      - recipe[chrony_ii_test::amazon_latest]
       - recipe[chrony_ii::default]
     verifier:
       inspec_tests:
@@ -33,6 +34,7 @@ suites:
     attributes:
   - name: amazon_time
     run_list:
+      - recipe[chrony_ii_test::amazon_latest]
       - recipe[chrony_ii::default]
     verifier:
       inspec_tests:
