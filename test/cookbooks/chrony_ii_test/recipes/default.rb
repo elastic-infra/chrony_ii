@@ -1,6 +1,6 @@
 #
-# Cookbook:: chrony_ii
-# Recipe:: service
+# Cookbook:: chrony_ii_test
+# Recipe:: default
 #
 # The MIT License (MIT)
 #
@@ -23,13 +23,3 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
-
-service 'chrony-daemon' do
-  service_name value_for_platform_family(
-    'rhel' => 'chronyd',
-    'amazon' => 'chronyd',
-    'debian' => 'chrony'
-  )
-  supports restart: true, status: true, reload: true
-  action %i[enable start]
-end
