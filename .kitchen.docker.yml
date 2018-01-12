@@ -15,13 +15,19 @@ verifier:
 
 platforms:
   - name: ubuntu-16.04
+    driver_config:
+      run_command: /sbin/init
   - name: centos-7
+    driver_config:
+      run_command: /sbin/init
   - name: amazonlinux
-    driver:
-      box: mvbcoding/awslinux
+    driver_config:
+      image: amazonlinux:1
+      platform: centos
+      privileged: true
   - name: debian-8
-    driver:
-      box: debian/jessie64
+    driver_config:
+      run_command: /sbin/init
 
 suites:
   - name: default
