@@ -4,9 +4,9 @@
 # found at http://inspec.io/docs/reference/resources/
 
 service_name = case os[:family]
-               when 'redhat'
+               when 'redhat', 'amazon'
                  'chronyd'
-               when 'debian', 'amazon'
+               when 'debian'
                  'chrony'
                end
 
