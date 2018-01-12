@@ -1,6 +1,6 @@
 #
-# Cookbook:: chrony_ii
-# Recipe:: service
+# Cookbook:: chrony_ii_test
+# Recipe:: amazon-latest
 #
 # The MIT License (MIT)
 #
@@ -24,12 +24,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-service 'chrony-daemon' do
-  service_name value_for_platform_family(
-    'rhel' => 'chronyd',
-    'amazon' => 'chronyd',
-    'debian' => 'chrony'
-  )
-  supports restart: true, status: true, reload: true
-  action %i[enable start]
+# Should only run on amazon
+if node['platform_family'] == 'amazon'
+  file '/etc/yum.conf' do
+    f = Chef::Util::FileEdit.new(path)
+    f.search_file_replace_line(/^#releasever=latest$/, 'releasever=latest')
+    content f.send(:editor).lines.join
+    only_if { /^#releasever=latest$/.match(IO.read(path)) }
+  end
 end
