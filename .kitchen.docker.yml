@@ -20,12 +20,21 @@ platforms:
   - name: centos-7
     driver_config:
       run_command: /sbin/init
+  - name: centos-6
+    driver_config:
+      run_command: /sbin/init
   - name: amazonlinux
     driver_config:
       image: amazonlinux:1
       platform: centos
       privileged: true
+  - name: debian-9
+    driver_config:
+      run_command: /sbin/init
   - name: debian-8
+    driver_config:
+      run_command: /sbin/init
+  - name: debian-7
     driver_config:
       run_command: /sbin/init
 

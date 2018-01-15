@@ -15,12 +15,19 @@ verifier:
 platforms:
   - name: ubuntu-16.04
   - name: centos-7
+  - name: centos-6
   - name: amazonlinux
     driver:
       box: mvbcoding/awslinux
+  - name: debian-9
+    driver:
+      box: debian/stretch64
   - name: debian-8
     driver:
       box: debian/jessie64
+  - name: debian-7
+    driver:
+      box: debian/wheezy64
 
 suites:
   - name: default
