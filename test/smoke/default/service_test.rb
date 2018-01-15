@@ -10,7 +10,21 @@ service_name = case os[:family]
                  'chrony'
                end
 
+# Debian SysV script does not support status
+service_supported = true
+if os.debian? && os[:release].to_i <= 7
+  service_supported = false
+end
+
 describe service(service_name) do
   it { should be_enabled }
-  it { should be_running }
+  if service_supported
+    it { should be_running }
+  end
+end
+
+unless service_supported
+  describe processes('chronyd') do
+    it { should exist }
+  end
 end
