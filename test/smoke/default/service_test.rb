@@ -12,15 +12,11 @@ service_name = case os[:family]
 
 # Debian SysV script does not support status
 service_supported = true
-if os.debian? && os[:release].to_i <= 7
-  service_supported = false
-end
+service_supported = false if os.debian? && os[:release].to_i <= 7
 
 describe service(service_name) do
   it { should be_enabled }
-  if service_supported
-    it { should be_running }
-  end
+  it { should be_running } if service_supported
 end
 
 unless service_supported
