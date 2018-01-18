@@ -30,7 +30,7 @@ platforms:
       privileged: true
   - name: debian-9
     driver_config:
-      run_command: /sbin/init
+      run_command: /bin/systemd
   - name: debian-8
     driver_config:
       run_command: /sbin/init
