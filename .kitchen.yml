@@ -25,9 +25,6 @@ platforms:
   - name: debian-8
     driver:
       box: debian/jessie64
-  - name: debian-7
-    driver:
-      box: debian/wheezy64
 
 suites:
   - name: default

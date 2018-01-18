@@ -10,7 +10,7 @@ chef_version '>= 12.1' if respond_to?(:chef_version)
 issues_url 'https://github.com/elastic-infra/chrony_ii/issues'
 source_url 'https://github.com/elastic-infra/chrony_ii'
 
-supports 'debian', '>= 7'
+supports 'debian', '>= 8'
 supports 'ubuntu', '>= 16.04'
 supports 'centos', '>= 6'
 supports 'redhat'

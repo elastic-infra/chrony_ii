@@ -34,9 +34,6 @@ platforms:
   - name: debian-8
     driver_config:
       run_command: /sbin/init
-  - name: debian-7
-    driver_config:
-      run_command: /sbin/init
 
 suites:
   - name: default
