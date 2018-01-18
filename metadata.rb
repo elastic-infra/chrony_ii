@@ -10,6 +10,8 @@ chef_version '>= 12.1' if respond_to?(:chef_version)
 issues_url 'https://github.com/elastic-infra/chrony_ii/issues'
 source_url 'https://github.com/elastic-infra/chrony_ii'
 
-%w[redhat centos debian ubuntu amazon].each do |os|
-  supports os
-end
+supports 'debian', '>= 8'
+supports 'ubuntu', '>= 16.04'
+supports 'centos', '>= 6'
+supports 'redhat'
+supports 'amazon'
