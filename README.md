@@ -10,7 +10,7 @@ Requirements
 
 #### platforms
 - debian >= 8
-  - debian7 should work but the installed version (v1.24) is too old to run on Linux 4.x (for CI)
+  - debian 7 should work but the installed version (v1.24) is too old to run on Linux 4.x (for CI)
 - ubuntu >= 16.04
 - centos >= 6
 - redhat
@@ -19,40 +19,25 @@ Requirements
 Attributes
 ----------
 
-#### chrony_ii::config
+| Key | Type | Description | default |
+| --- | --- | --- | --- |
+|['chrony_ii']['config']|Hash|chrony.conf value. Hash value can be a string or an array of string.| Depends on platform (see `attributes/default.rb`) Default attributes use public NTP servers.|
+| ['chrony_ii']['amazon_time_sync_service'] | Boolean | Whether to use <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/set-time.html#configure-amazon-time-service">Amazon Time Sync Service</a> | false |
+| ['chrony_ii']['config_update_restart']| Boolean | Whether to restart chrony daemon after config file change | true |
 
-<table>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td><tt>['chrony_ii']['config']</tt></td>
-    <td>Hash</td>
-    <td>chrony.conf value. Hash value can be a string or an array of string.</td>
-    <td><tt>Depends on platform (see `attributes/default.rb`)</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['chrony_ii']['amazon_time_sync_service']</tt></td>
-    <td>Boolean</td>
-    <td>Whether to use <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/set-time.html#configure-amazon-time-service">Amazon Time Sync Service</a></td>
-    <td>false</td>
-  </tr>
-  <tr>
-    <td><tt>['chrony_ii']['config_update_restart']</tt></td>
-    <td>Boolean</td>
-    <td>Whether to restart chrony daemon after config file change</td>
-    <td>true</td>
-  </tr>
-</table>
+
+
+Recipes
+---------
+- default - executes the below three recipes.
+- config - configures application name, path, and configuration file based on platform family
+- package - Removes competing packages and installs chrony
+- service - configures chrony service
 
 Usage
 -----
-#### chrony_ii::default
+If your fine with using the public NTP servers you can simply include `chrony_ii` in your node's `run_list`:
 
-Just include `chrony_ii` in your node's `run_list`:
 ```json
 {
   "name":"my_node",
@@ -61,6 +46,35 @@ Just include `chrony_ii` in your node's `run_list`:
   ]
 }
 ```
+If you need to controle your configuration use a role.
+##### Sample attribute set for chrony.conf
+```json
+debian_attr = {
+  'server' => [
+    '0.debian.pool.ntp.org offline minpoll 8',
+    '1.debian.pool.ntp.org offline minpoll 8',
+    '2.debian.pool.ntp.org offline minpoll 8',
+    '3.debian.pool.ntp.org offline minpoll 8'
+  ],
+  'keyfile' => '/etc/chrony/chrony.keys',
+  'commandkey' => '1',
+  'driftfile' => '/var/lib/chrony/chrony.drift',
+  'log' => 'tracking measurements statistics',
+  'logdir' => '/var/log/chrony',
+  'maxupdateskew' => '100.0',
+  'dumponexit' => '',
+  'dumpdir' => '/var/lib/chrony',
+  'local' => 'stratum 10',
+  'allow' => [
+    '10/8',
+    '192.168/16',
+    '172.16/12'
+  ],
+  'logchange' => '0.5',
+  'rtconutc' => ''
+}
+```
+
 
 Contributing
 ------------
