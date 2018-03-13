@@ -4,7 +4,7 @@ maintainer_email 'kabe@elastic-infra.com'
 license 'MIT'
 description 'Installs/Configures chrony_ii'
 long_description 'Installs/Configures chrony_ii'
-version '0.1.0'
+version '0.1.1'
 chef_version '>= 12.1' if respond_to?(:chef_version)
 
 issues_url 'https://github.com/elastic-infra/chrony_ii/issues'
