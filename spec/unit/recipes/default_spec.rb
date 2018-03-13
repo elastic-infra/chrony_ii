@@ -31,7 +31,7 @@ describe 'chrony_ii::default' do
     let(:chef_run) do
       # for a complete list of available platforms and versions see:
       # https://github.com/customink/fauxhai/blob/master/PLATFORMS.md
-      runner = ChefSpec::ServerRunner.new(
+      runner = ChefSpec::SoloRunner.new(
         platform: 'ubuntu',
         version: '16.04'
       )
@@ -47,7 +47,7 @@ describe 'chrony_ii::default' do
     let(:chef_run) do
       # for a complete list of available platforms and versions see:
       # https://github.com/customink/fauxhai/blob/master/PLATFORMS.md
-      runner = ChefSpec::ServerRunner.new(
+      runner = ChefSpec::SoloRunner.new(
         platform: 'centos',
         version: '7.4.1708'
       )
