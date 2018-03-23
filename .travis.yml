@@ -3,7 +3,7 @@ sudo: required
 addons:
   apt:
     sources:
-      - chef-current-precise
+      - sourceline: "deb https://packages.chef.io/repos/apt/current xenial main"
     packages:
       - chefdk
 
