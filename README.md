@@ -30,13 +30,13 @@ Attributes
 Recipes
 ---------
 - default - executes the below three recipes.
-- config - configures application name, path, and configuration file based on platform family
-- package - Removes competing packages and installs chrony
-- service - configures chrony service
+- config - configures application name, path, and configuration file based on platform family.
+- package - removes competing packages and installs chrony.
+- service - configures chrony service.
 
 Usage
 -----
-If your fine with using the public NTP servers you can simply include `chrony_ii` in your node's `run_list`:
+If you are fine with using the public NTP servers you can simply include `chrony_ii` in your node's `run_list`:
 
 ```json
 {
@@ -46,9 +46,11 @@ If your fine with using the public NTP servers you can simply include `chrony_ii
   ]
 }
 ```
-If you need to controle your configuration use a role.
+If you need to control your configuration use a role.
+
 ##### Sample attribute set for chrony.conf
-```json
+
+```ruby
 debian_attr = {
   'server' => [
     '0.debian.pool.ntp.org offline minpoll 8',
@@ -74,7 +76,6 @@ debian_attr = {
   'rtconutc' => ''
 }
 ```
-
 
 Contributing
 ------------
