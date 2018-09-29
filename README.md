@@ -11,7 +11,7 @@ Requirements
 #### platforms
 - debian >= 8
   - debian7 should work but the installed version (v1.24) is too old to run on Linux 4.x (for CI)
-- ubuntu >= 16.04
+- ubuntu >= 14.04 (Only LTS)
 - centos >= 6
 - redhat
 - amazon
