@@ -52,11 +52,11 @@ If you need to control your configuration use a role.
 
 ```ruby
 debian_attr = {
-  'server' => [
-    '0.debian.pool.ntp.org offline minpoll 8',
-    '1.debian.pool.ntp.org offline minpoll 8',
-    '2.debian.pool.ntp.org offline minpoll 8',
-    '3.debian.pool.ntp.org offline minpoll 8'
+  'pool' => [
+    '0.debian.pool.ntp.org iburst maxsources 1',
+    '1.debian.pool.ntp.org iburst maxsources 1',
+    '2.debian.pool.ntp.org iburst maxsources 1',
+    '3.debian.pool.ntp.org iburst maxsources 1'
   ],
   'keyfile' => '/etc/chrony/chrony.keys',
   'commandkey' => '1',

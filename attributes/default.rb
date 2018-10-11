@@ -1,9 +1,9 @@
 debian_attr = {
-  'server' => [
-    '0.debian.pool.ntp.org offline minpoll 8',
-    '1.debian.pool.ntp.org offline minpoll 8',
-    '2.debian.pool.ntp.org offline minpoll 8',
-    '3.debian.pool.ntp.org offline minpoll 8'
+  'pool' => [
+    '0.debian.pool.ntp.org iburst maxsources 1',
+    '1.debian.pool.ntp.org iburst maxsources 1',
+    '2.debian.pool.ntp.org iburst maxsources 1',
+    '3.debian.pool.ntp.org iburst maxsources 1'
   ],
   'keyfile' => '/etc/chrony/chrony.keys',
   'commandkey' => '1',
@@ -24,11 +24,11 @@ debian_attr = {
 }
 
 redhat_attr = {
-  'server' => [
-    '0.centos.pool.ntp.org iburst',
-    '1.centos.pool.ntp.org iburst',
-    '2.centos.pool.ntp.org iburst',
-    '3.centos.pool.ntp.org iburst'
+  'pool' => [
+    '0.centos.pool.ntp.org iburst maxsources 1',
+    '1.centos.pool.ntp.org iburst maxsources 1',
+    '2.centos.pool.ntp.org iburst maxsources 1',
+    '3.centos.pool.ntp.org iburst maxsources 1'
   ],
   'stratumweight' => '0',
   'driftfile' => '/var/lib/chrony/drift',
@@ -47,11 +47,11 @@ redhat_attr = {
 }
 
 amazon_attr = {
-  'server' => [
-    '0.amazon.pool.ntp.org iburst',
-    '1.amazon.pool.ntp.org iburst',
-    '2.amazon.pool.ntp.org iburst',
-    '3.amazon.pool.ntp.org iburst'
+  'pool' => [
+    '0.amazon.pool.ntp.org iburst maxsources 1',
+    '1.amazon.pool.ntp.org iburst maxsources 1',
+    '2.amazon.pool.ntp.org iburst maxsources 1',
+    '3.amazon.pool.ntp.org iburst maxsources 1'
   ],
   'stratumweight' => '0',
   'driftfile' => '/var/lib/chrony/drift',
