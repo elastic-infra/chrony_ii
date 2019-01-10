@@ -32,10 +32,7 @@ require 'spec_helper'
 describe 'chrony_ii::default' do
   context 'When all attributes are default, on Ubuntu 16.04' do
     let(:chef_run) do
-      runner = ChefSpec::SoloRunner.new(
-        platform: 'ubuntu',
-        version: '16.04'
-      )
+      runner = ChefSpec::SoloRunner.new(platform: 'ubuntu',version: '16.04')
       runner.converge(described_recipe)
     end
     it 'converges successfully' do
@@ -44,10 +41,7 @@ describe 'chrony_ii::default' do
   end
   context 'When all attributes are default, on Ubuntu 14.04' do
     let(:chef_run) do
-      runner = ChefSpec::SoloRunner.new(
-        platform: 'ubuntu',
-        version: '14.04'
-      )
+      runner = ChefSpec::SoloRunner.new(platform: 'ubuntu',version: '14.04')
       runner.converge(described_recipe)
     end
     it 'converges successfully' do
@@ -56,10 +50,7 @@ describe 'chrony_ii::default' do
   end
   context 'When all attributes are default, on CentOS 7.4.1708' do
     let(:chef_run) do
-      runner = ChefSpec::SoloRunner.new(
-        platform: 'centos',
-        version: '7.4.1708'
-      )
+      runner = ChefSpec::SoloRunner.new(platform: 'centos',version: '7.4.1708')
       runner.converge(described_recipe)
     end
     it 'converges successfully' do
