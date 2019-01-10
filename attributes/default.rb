@@ -1,10 +1,11 @@
 debian_attr = {
   'pool' => [
-    '0.debian.pool.ntp.org iburst maxsources 1',
-    '1.debian.pool.ntp.org iburst maxsources 1',
-    '2.debian.pool.ntp.org iburst maxsources 1',
-    '3.debian.pool.ntp.org iburst maxsources 1'
+    '0.debian.pool.ntp.org iburst',
+    '1.debian.pool.ntp.org iburst',
+    '2.debian.pool.ntp.org iburst',
+    '3.debian.pool.ntp.org iburst'
   ],
+  'initstepslew' => '30 0.debian.pool.ntp.org 1.debian.pool.ntp.org 2.debian.pool.ntp.org 3.debian.pool.ntp.org',
   'keyfile' => '/etc/chrony/chrony.keys',
   'commandkey' => '1',
   'driftfile' => '/var/lib/chrony/chrony.drift',
@@ -25,11 +26,12 @@ debian_attr = {
 
 redhat_attr = {
   'pool' => [
-    '0.centos.pool.ntp.org iburst maxsources 1',
-    '1.centos.pool.ntp.org iburst maxsources 1',
-    '2.centos.pool.ntp.org iburst maxsources 1',
-    '3.centos.pool.ntp.org iburst maxsources 1'
+    '0.centos.pool.ntp.org iburst',
+    '1.centos.pool.ntp.org iburst',
+    '2.centos.pool.ntp.org iburst',
+    '3.centos.pool.ntp.org iburst'
   ],
+  'initstepslew' => '30 0.centos.pool.ntp.org 1.centos.pool.ntp.org 2.centos.pool.ntp.org 3.centos.pool.ntp.org',
   'stratumweight' => '0',
   'driftfile' => '/var/lib/chrony/drift',
   'rtcsync' => '',
@@ -48,11 +50,12 @@ redhat_attr = {
 
 amazon_attr = {
   'pool' => [
-    '0.amazon.pool.ntp.org iburst maxsources 1',
-    '1.amazon.pool.ntp.org iburst maxsources 1',
-    '2.amazon.pool.ntp.org iburst maxsources 1',
-    '3.amazon.pool.ntp.org iburst maxsources 1'
+    '0.amazon.pool.ntp.org iburst',
+    '1.amazon.pool.ntp.org iburst',
+    '2.amazon.pool.ntp.org iburst',
+    '3.amazon.pool.ntp.org iburst'
   ],
+  'initstepslew' => '30 169.254.169.123',
   'stratumweight' => '0',
   'driftfile' => '/var/lib/chrony/drift',
   'rtcsync' => '',

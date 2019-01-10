@@ -53,11 +53,12 @@ If you need to control your configuration use a role.
 ```ruby
 debian_attr = {
   'pool' => [
-    '0.debian.pool.ntp.org iburst maxsources 1',
-    '1.debian.pool.ntp.org iburst maxsources 1',
-    '2.debian.pool.ntp.org iburst maxsources 1',
-    '3.debian.pool.ntp.org iburst maxsources 1'
+    '0.debian.pool.ntp.org iburst',
+    '1.debian.pool.ntp.org iburst',
+    '2.debian.pool.ntp.org iburst',
+    '3.debian.pool.ntp.org iburst'
   ],
+  'initstepslew' => '30 0.debian.pool.ntp.org 1.debian.pool.ntp.org 2.debian.pool.ntp.org 3.debian.pool.ntp.org',
   'keyfile' => '/etc/chrony/chrony.keys',
   'commandkey' => '1',
   'driftfile' => '/var/lib/chrony/chrony.drift',
