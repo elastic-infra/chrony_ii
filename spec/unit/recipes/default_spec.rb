@@ -59,7 +59,6 @@ describe 'chrony_ii::default' do
     end
   end
 
-
   context 'When all attributes are default, on CentOS 7.4.1708' do
     let(:chef_run) do
       # for a complete list of available platforms and versions see:
