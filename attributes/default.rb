@@ -5,7 +5,7 @@ debian_attr = {
     '2.debian.pool.ntp.org iburst',
     '3.debian.pool.ntp.org iburst'
   ],
-  'initstepslew' => '30 0.debian.pool.ntp.org 1.debian.pool.ntp.org 2.debian.pool.ntp.org 3.debian.pool.ntp.org',
+  'initstepslew' => '30 0.debian.pool.ntp.org 1.debian.pool.ntp.org',
   'keyfile' => '/etc/chrony/chrony.keys',
   'commandkey' => '1',
   'driftfile' => '/var/lib/chrony/chrony.drift',
@@ -31,7 +31,7 @@ redhat_attr = {
     '2.centos.pool.ntp.org iburst',
     '3.centos.pool.ntp.org iburst'
   ],
-  'initstepslew' => '30 0.centos.pool.ntp.org 1.centos.pool.ntp.org 2.centos.pool.ntp.org 3.centos.pool.ntp.org',
+  'initstepslew' => '30 0.centos.pool.ntp.org 1.centos.pool.ntp.org',
   'stratumweight' => '0',
   'driftfile' => '/var/lib/chrony/drift',
   'rtcsync' => '',
@@ -55,7 +55,7 @@ amazon_attr = {
     '2.amazon.pool.ntp.org iburst',
     '3.amazon.pool.ntp.org iburst'
   ],
-  'initstepslew' => '30 169.254.169.123',
+  'initstepslew' => '30 169.254.169.123 0.amazon.pool.ntp.org',
   'stratumweight' => '0',
   'driftfile' => '/var/lib/chrony/drift',
   'rtcsync' => '',
