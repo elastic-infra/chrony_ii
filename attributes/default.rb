@@ -49,6 +49,7 @@ redhat_attr = {
 }
 
 amazon_attr = {
+  'server' => '169.254.169.123 prefer iburst',
   'pool' => [
     '0.amazon.pool.ntp.org iburst',
     '1.amazon.pool.ntp.org iburst',
