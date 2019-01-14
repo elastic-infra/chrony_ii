@@ -17,12 +17,6 @@ platforms:
   - name: ubuntu-16.04
     driver_config:
       run_command: /sbin/init
-  - name: ubuntu-14.04
-    driver_config:
-      run_command: /sbin/init
-      provision_command:
-        - update-rc.d ssh defaults
-        - mv /sbin/initctl.distrib /sbin/initctl
   - name: centos-7
     driver_config:
       run_command: /sbin/init

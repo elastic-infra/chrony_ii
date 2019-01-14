@@ -11,7 +11,7 @@ issues_url 'https://github.com/elastic-infra/chrony_ii/issues'
 source_url 'https://github.com/elastic-infra/chrony_ii'
 
 supports 'debian', '>= 8.0.0'
-supports 'ubuntu', '>= 14.04.0'
+supports 'ubuntu', '>= 16.04.0'
 supports 'centos', '>= 6.0.0'
 supports 'redhat', '>= 0.0.0'
 supports 'amazon', '>= 0.0.0'
