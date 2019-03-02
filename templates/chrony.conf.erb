@@ -2,6 +2,11 @@
 
 <% if node[cookbook_name]['amazon_time_sync_service'] %>
 server 169.254.169.123 prefer iburst
+pool 0.amazon.pool.ntp.org iburst
+pool 1.amazon.pool.ntp.org iburst
+pool 2.amazon.pool.ntp.org iburst
+pool 3.amazon.pool.ntp.org iburst
+initstepslew 30 169.254.169.123 0.amazon.pool.ntp.org
 <% end %>
 
 <%= @config_content %>

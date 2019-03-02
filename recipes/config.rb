@@ -30,7 +30,14 @@ config_path = value_for_platform_family(
   'debian' => '/etc/chrony/chrony.conf'
 )
 
+# Supports 'pool' directive? (chrony >= 2.0)
+supports_pool = true
+if platform?('ubuntu') && node['platform_version'].to_f < 16
+  supports_pool = false
+end
+
 config = node[cookbook_name]['config'].to_h.map do |k, v|
+  k = 'server' if k == 'pool' && !supports_pool
   case v
   when Array
     v.map { |vv| [k, vv].join(' ') }.join("\n")
