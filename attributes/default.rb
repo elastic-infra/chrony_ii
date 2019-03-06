@@ -49,14 +49,13 @@ redhat_attr = {
 }
 
 amazon_attr = {
-  'server' => '169.254.169.123 prefer iburst',
   'pool' => [
     '0.amazon.pool.ntp.org iburst',
     '1.amazon.pool.ntp.org iburst',
     '2.amazon.pool.ntp.org iburst',
     '3.amazon.pool.ntp.org iburst'
   ],
-  'initstepslew' => '30 169.254.169.123 0.amazon.pool.ntp.org',
+  'initstepslew' => '30 0.amazon.pool.ntp.org 1.amazon.pool.ntp.org',
   'stratumweight' => '0',
   'driftfile' => '/var/lib/chrony/drift',
   'rtcsync' => '',
