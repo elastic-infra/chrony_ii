@@ -10,7 +10,7 @@ describe file(config_path) do
   its('group') { should eq 'root' }
   its('mode') { should eq 0o644 }
   its('content') { should match(/^# Chef managed/) }
-  its('content') { should match(/^server 169\.254\.169\.123 prefer iburst$/) }
+  its('content') { should match(/^server 169\.254\.169\.123 iburst$/) }
   its('content') { should match(/^initstepslew 30 169\.254\.169\.123$/) }
   its('content') { should_not match(/^pool/) }
 end
