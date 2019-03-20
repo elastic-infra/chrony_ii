@@ -52,12 +52,13 @@ If you need to control your configuration use a role.
 
 ```ruby
 debian_attr = {
-  'server' => [
-    '0.debian.pool.ntp.org offline minpoll 8',
-    '1.debian.pool.ntp.org offline minpoll 8',
-    '2.debian.pool.ntp.org offline minpoll 8',
-    '3.debian.pool.ntp.org offline minpoll 8'
+  'pool' => [
+    '0.debian.pool.ntp.org iburst',
+    '1.debian.pool.ntp.org iburst',
+    '2.debian.pool.ntp.org iburst',
+    '3.debian.pool.ntp.org iburst'
   ],
+  'initstepslew' => '30 0.debian.pool.ntp.org 1.debian.pool.ntp.org',
   'keyfile' => '/etc/chrony/chrony.keys',
   'commandkey' => '1',
   'driftfile' => '/var/lib/chrony/chrony.drift',
