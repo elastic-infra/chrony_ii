@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 debian_attr = {
   'pool' => [
     '0.debian.pool.ntp.org iburst',
