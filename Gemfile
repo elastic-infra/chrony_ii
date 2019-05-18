@@ -9,24 +9,24 @@ end
 
 group :lint do
   gem 'foodcritic'
-  gem 'rubocop', '~> 0.52'
+  gem 'rubocop', '~> 0.69'
 end
 
 group :unit do
-  gem 'berkshelf', '~> 6'
+  gem 'berkshelf', '~> 7'
   gem 'chefspec', '~> 7'
 end
 
 group :kitchen_common do
-  gem 'test-kitchen', '~> 1.19'
+  gem 'test-kitchen', '~> 2.2.5'
 end
 
 group :kitchen_vagrant do
-  gem 'kitchen-vagrant', '~> 1.2'
+  gem 'kitchen-vagrant', '~> 1.5'
 end
 
 group :kitchen_inspec do
-  gem 'kitchen-inspec', '~> 0.20'
+  gem 'kitchen-inspec', '~> 1.1'
 end
 
 group :kitchen_docker do
