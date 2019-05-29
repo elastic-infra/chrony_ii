@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Inspec test for recipe chrony_ii::default
 
 # The Inspec reference, with examples and extensive documentation, can be

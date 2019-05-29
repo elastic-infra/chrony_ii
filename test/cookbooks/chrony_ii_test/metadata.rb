@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 name 'chrony_ii_test'
 maintainer 'Tomoya Kabe'
 maintainer_email 'kabe@elastic-infra.com'
