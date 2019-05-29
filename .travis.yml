@@ -26,11 +26,12 @@ before_script:
   # https://github.com/zuazo/kitchen-in-travis-native/issues/1#issuecomment-142230889
   - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
   - eval "$(/opt/chefdk/bin/chef shell-init bash)"
-  - /opt/chefdk/embedded/bin/chef gem install kitchen-docker
+  - /opt/chefdk/embedded/bin/chef gem install test-kitchen kitchen-docker
   - /opt/chefdk/embedded/bin/chef gem install rubocop
   - /opt/chefdk/embedded/bin/chef gem install fauxhai -v 5.6.0
 script:
   - /opt/chefdk/embedded/bin/chef --version
+  - /opt/chefdk/embedded/bin/kitchen --version
   - /opt/chefdk/embedded/bin/rubocop --version
   - /opt/chefdk/embedded/bin/rubocop
   - /opt/chefdk/embedded/bin/foodcritic --version
