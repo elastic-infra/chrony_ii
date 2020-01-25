@@ -26,7 +26,11 @@ platforms:
         - mv /sbin/initctl.distrib /sbin/initctl
   - name: centos-7
     driver_config:
-      run_command: /sbin/init
+      image: centos/systemd
+      run_command: /usr/sbin/init
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+        - systemctl enable sshd.service
   - name: centos-6
     driver_config:
       run_command: /sbin/init
