@@ -5,7 +5,7 @@ maintainer 'Tomoya Kabe'
 maintainer_email 'kabe@elastic-infra.com'
 license 'MIT'
 description 'Installs/Configures chrony_ii'
-version '0.3.1'
+version '0.4.0'
 chef_version '>= 12.1'
 
 issues_url 'https://github.com/elastic-infra/chrony_ii/issues'
