@@ -17,7 +17,7 @@ group :unit do
 end
 
 group :kitchen_common do
-  gem 'test-kitchen', '~> 2.2.5'
+  gem 'test-kitchen'
 end
 
 group :kitchen_vagrant do
