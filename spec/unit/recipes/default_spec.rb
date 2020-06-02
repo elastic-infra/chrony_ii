@@ -51,7 +51,7 @@ describe 'chrony_ii::default' do
       # https://github.com/customink/fauxhai/blob/master/PLATFORMS.md
       runner = ChefSpec::SoloRunner.new(
         platform: 'centos',
-        version: '7.4.1708'
+        version: '7'
       )
       runner.converge(described_recipe)
     end

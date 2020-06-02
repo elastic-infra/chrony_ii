@@ -26,10 +26,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-%w[
+%w(
   package
   config
   service
-].each do |recipe|
+).each do |recipe|
   include_recipe "#{cookbook_name}::#{recipe}"
 end

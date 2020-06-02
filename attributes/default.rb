@@ -5,7 +5,7 @@ debian_attr = {
     '0.debian.pool.ntp.org iburst',
     '1.debian.pool.ntp.org iburst',
     '2.debian.pool.ntp.org iburst',
-    '3.debian.pool.ntp.org iburst'
+    '3.debian.pool.ntp.org iburst',
   ],
   'initstepslew' => '30 0.debian.pool.ntp.org 1.debian.pool.ntp.org',
   'keyfile' => '/etc/chrony/chrony.keys',
@@ -20,10 +20,10 @@ debian_attr = {
   'allow' => [
     '10/8',
     '192.168/16',
-    '172.16/12'
+    '172.16/12',
   ],
   'logchange' => '0.5',
-  'rtconutc' => ''
+  'rtconutc' => '',
 }
 
 redhat_attr = {
@@ -31,7 +31,7 @@ redhat_attr = {
     '0.centos.pool.ntp.org iburst',
     '1.centos.pool.ntp.org iburst',
     '2.centos.pool.ntp.org iburst',
-    '3.centos.pool.ntp.org iburst'
+    '3.centos.pool.ntp.org iburst',
   ],
   'initstepslew' => '30 0.centos.pool.ntp.org 1.centos.pool.ntp.org',
   'stratumweight' => '0',
@@ -40,14 +40,14 @@ redhat_attr = {
   'makestep' => '10 3',
   'bindcmdaddress' => [
     '127.0.0.1',
-    '::1'
+    '::1',
   ],
   'keyfile' => '/etc/chrony.keys',
   'commandkey' => '1',
   'generatecommandkey' => '',
   'noclientlog' => '',
   'logchange' => '0.5',
-  'logdir' => '/var/log/chrony'
+  'logdir' => '/var/log/chrony',
 }
 
 amazon_attr = {
@@ -55,7 +55,7 @@ amazon_attr = {
     '0.amazon.pool.ntp.org iburst',
     '1.amazon.pool.ntp.org iburst',
     '2.amazon.pool.ntp.org iburst',
-    '3.amazon.pool.ntp.org iburst'
+    '3.amazon.pool.ntp.org iburst',
   ],
   'initstepslew' => '30 0.amazon.pool.ntp.org 1.amazon.pool.ntp.org',
   'stratumweight' => '0',
@@ -64,14 +64,14 @@ amazon_attr = {
   'makestep' => '10 3',
   'bindcmdaddress' => [
     '127.0.0.1',
-    '::1'
+    '::1',
   ],
   'keyfile' => '/etc/chrony.keys',
   'commandkey' => '1',
   'generatecommandkey' => '',
   'noclientlog' => '',
   'logchange' => '0.5',
-  'logdir' => '/var/log/chrony'
+  'logdir' => '/var/log/chrony',
 }
 
 # Not in recipe yet

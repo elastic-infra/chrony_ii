@@ -33,5 +33,5 @@ service 'chrony-daemon' do
     'debian' => 'chrony'
   )
   supports restart: true, status: true, reload: true
-  action %i[enable start]
+  action %i(enable start)
 end

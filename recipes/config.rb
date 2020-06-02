@@ -34,7 +34,7 @@ config_path = value_for_platform_family(
 
 if node[cookbook_name]['amazon_time_sync_service']
   node.default[cookbook_name]['config']['server'] = [
-    '169.254.169.123 iburst'
+    '169.254.169.123 iburst',
   ]
   node.default[cookbook_name]['config']['initstepslew'] = ['30 169.254.169.123']
   node.default[cookbook_name]['config']['pool'] = []
