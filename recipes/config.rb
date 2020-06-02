@@ -33,11 +33,11 @@ config_path = value_for_platform_family(
 )
 
 if node[cookbook_name]['amazon_time_sync_service']
-  node.normal[cookbook_name]['config']['server'] = [
+  node.default[cookbook_name]['config']['server'] = [
     '169.254.169.123 iburst'
   ]
-  node.normal[cookbook_name]['config']['initstepslew'] = ['30 169.254.169.123']
-  node.normal[cookbook_name]['config']['pool'] = []
+  node.default[cookbook_name]['config']['initstepslew'] = ['30 169.254.169.123']
+  node.default[cookbook_name]['config']['pool'] = []
 end
 
 # Supports 'pool' directive? (chrony >= 2.0)
