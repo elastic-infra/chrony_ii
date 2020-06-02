@@ -42,9 +42,7 @@ end
 
 # Supports 'pool' directive? (chrony >= 2.0)
 supports_pool = true
-if platform?('ubuntu') && node['platform_version'].to_f < 16
-  supports_pool = false
-end
+platform?('ubuntu') && node['platform_version'].to_f < 16 && supports_pool = false
 
 config = node[cookbook_name]['config'].to_h.map do |k, v|
   k = 'server' if k == 'pool' && !supports_pool
