@@ -7,7 +7,7 @@ addons:
     sources:
       - sourceline: "deb https://packages.chef.io/repos/apt/current bionic main"
     packages:
-      - chefdk
+      - chef-workstation
 
 services: docker
 
@@ -29,14 +29,14 @@ install: echo "skip bundle install"
 before_script:
   # https://github.com/zuazo/kitchen-in-travis-native/issues/1#issuecomment-142230889
   - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
-  - eval "$(/opt/chefdk/bin/chef shell-init bash)"
-  - /opt/chefdk/embedded/bin/chef gem install test-kitchen kitchen-docker
-  - /opt/chefdk/embedded/bin/chef gem install rubocop
-  - /opt/chefdk/embedded/bin/chef gem install fauxhai -v 5.6.0
+  - eval "$(/opt/chef-workstation/bin/chef shell-init bash)"
+  - /opt/chef-workstation/bin/chef gem install test-kitchen kitchen-docker
+  - /opt/chef-workstation/bin/chef gem install rubocop rspec
+  - /opt/chef-workstation/bin/chef gem install fauxhai -v 5.6.0
 script:
-  - /opt/chefdk/embedded/bin/chef --version
-  - /opt/chefdk/embedded/bin/kitchen --version
-  - /opt/chefdk/embedded/bin/cookstyle --version
-  - /opt/chefdk/embedded/bin/cookstyle
-  - /opt/chefdk/embedded/bin/rspec
-  - KITCHEN_YAML=kitchen.docker.yml /opt/chefdk/embedded/bin/kitchen verify ${INSTANCE}
+  - /opt/chef-workstation/bin/chef --version
+  - /opt/chef-workstation/bin/kitchen --version
+  - /opt/chef-workstation/bin/cookstyle --version
+  - /opt/chef-workstation/bin/cookstyle
+  - /opt/chef-workstation/embedded/bin/rspec
+  - KITCHEN_YAML=kitchen.docker.yml /opt/chef-workstation/bin/kitchen verify ${INSTANCE}
