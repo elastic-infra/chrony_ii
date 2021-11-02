@@ -77,6 +77,7 @@ amazon_attr = {
 # Not in recipe yet
 cookbook_name = 'chrony_ii'
 
+# <> chrony.conf value. Hash value can be a string or an array of string.
 default[cookbook_name]['config'] = case node['platform_family']
                                    when 'debian'
                                      debian_attr
@@ -86,6 +87,8 @@ default[cookbook_name]['config'] = case node['platform_family']
                                      amazon_attr
                                    end
 
+# <> Whether to use [Amazon Time Sync Service](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/set-time.html#configure-amazon-time-service).
 default[cookbook_name]['amazon_time_sync_service'] = false
 
+# <> Whether to restart chrony daemon after config file change
 default[cookbook_name]['config_update_restart'] = true

@@ -26,6 +26,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
+# <
+# Configures chrony service.
+# >
+
 service 'chrony-daemon' do
   service_name value_for_platform_family(
     'rhel' => 'chronyd',

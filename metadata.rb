@@ -4,7 +4,7 @@ name 'chrony_ii'
 maintainer 'Tomoya Kabe'
 maintainer_email 'kabe@elastic-infra.com'
 license 'MIT'
-description 'Installs/Configures chrony_ii'
+description 'Installs/Configures chrony'
 version '0.4.0'
 chef_version '>= 12.1'
 

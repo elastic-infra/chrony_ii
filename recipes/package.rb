@@ -26,6 +26,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
+# <
+# Removes competing packages and installs chrony.
+# >
+
 package ['ntp', 'ntpdate'] do
   action :remove
 end

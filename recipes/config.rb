@@ -26,6 +26,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
+# <
+# Configures application name, path, and configuration file based on platform family.
+# >
+
 config_path = value_for_platform_family(
   'rhel' => '/etc/chrony.conf',
   'amazon' => '/etc/chrony.conf',
