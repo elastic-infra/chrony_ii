@@ -1,42 +1,104 @@
-chrony_ii cookbook
-==================
+# Description
 
 [![Build Status](https://travis-ci.org/elastic-infra/chrony_ii.svg?branch=master)](https://travis-ci.org/elastic-infra/chrony_ii) [![GitHub license](https://img.shields.io/github/license/elastic-infra/chrony_ii.svg)](https://github.com/elastic-infra/chrony_ii/blob/master/LICENSE) [![GitHub issues](https://img.shields.io/github/issues/elastic-infra/chrony_ii.svg)](https://github.com/elastic-infra/chrony_ii/issues) [![Cookbook Version](https://img.shields.io/cookbook/v/chrony_ii.svg)](https://supermarket.chef.io/cookbooks/chrony_ii)
 
+Installs/Configures chrony
 
-This cookbook installs chrony.
-
-Requirements
-------------
-
-#### platforms
-- debian >= 8
-  - debian 7 should work but the installed version (v1.24) is too old to run on Linux 4.x (for CI)
-- ubuntu >= 14.04 (Only LTS)
-- centos >= 6
-- redhat
-- amazon
-
-Attributes
-----------
-
-| Key | Type | Description | default |
-| --- | --- | --- | --- |
-|['chrony_ii']['config']|Hash|chrony.conf value. Hash value can be a string or an array of string.| Depends on platform (see `attributes/default.rb`) Default attributes use public NTP servers.|
-| ['chrony_ii']['amazon_time_sync_service'] | Boolean | Whether to use <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/set-time.html#configure-amazon-time-service">Amazon Time Sync Service</a> | false |
-| ['chrony_ii']['config_update_restart']| Boolean | Whether to restart chrony daemon after config file change | true |
+# Requirements
 
 
+## Chef Client:
 
-Recipes
----------
-- default - executes the below three recipes.
-- config - configures application name, path, and configuration file based on platform family.
-- package - removes competing packages and installs chrony.
-- service - configures chrony service.
+* chef (>= 12.1)
 
-Usage
------
+## Platform:
+
+* debian (>= 8.0.0)
+* ubuntu (>= 14.04.0)
+* centos (>= 6.0.0)
+* redhat
+* amazon
+
+## Cookbooks:
+
+*No dependencies defined*
+
+# Attributes
+
+* `node[cookbook_name]['config']` - chrony.conf value. Hash value can be a string or an array of string. Defaults to `case node['platform_family']`.
+* `node[cookbook_name]['amazon_time_sync_service']` - Whether to use [Amazon Time Sync Service](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/set-time.html#configure-amazon-time-service). Defaults to `false`.
+* `node[cookbook_name]['config_update_restart']` - Whether to restart chrony daemon after config file change. Defaults to `true`.
+
+# Recipes
+
+* [chrony_ii::config](#chrony_iiconfig) - Configures application name, path, and configuration file based on platform family.
+* [chrony_ii::default](#chrony_iidefault) - Loads necessary recipes.
+* [chrony_ii::package](#chrony_iipackage) - Removes competing packages and installs chrony.
+* [chrony_ii::service](#chrony_iiservice) - Configures chrony service.
+* [chrony_ii::systemd_support](#chrony_iisystemd_support)
+
+## chrony_ii::config
+
+Configures application name, path, and configuration file based on platform family.
+
+## chrony_ii::default
+
+Loads necessary recipes.
+
+## chrony_ii::package
+
+Removes competing packages and installs chrony.
+
+## chrony_ii::service
+
+Configures chrony service.
+
+## chrony_ii::systemd_support
+
+Provides supporting resources for systemd
+
+# Resources
+
+* [chrony_ii_systemd_dependency](#chrony_ii_systemd_dependency)
+
+## chrony_ii_systemd_dependency
+
+Manages additional chronyd service dependencies in systemd
+
+### Actions
+
+- create: Create chronyd service dependencies in systemd Default action.
+- delete: Delete chronyd service dependencies in systemd
+
+### Attribute Parameters
+
+- systemd_system_dir: systemd's system config directory path
+- wants: systemd service 'Wants=' targets with symlinks to 'chronyd.service.wants' Defaults to <code>"network-online.target"</code>.
+- after: systemd service 'After=' targets with symlinks to 'chronyd.service.after' Defaults to <code>"network-online.target"</code>.
+
+### Examples
+
+```ruby
+include_recipe 'chrony_ii::systemd_support'
+chrony_ii_systemd_dependency '/usr/lib/systemd/system'
+```
+
+```ruby
+include_recipe 'chrony_ii::systemd_support'
+chrony_ii_systemd_dependency '/usr/lib/systemd/system' do
+  wants 'x.target y.target'
+  after 'x.target'
+end
+```
+
+# Deprecation Notice
+
+We are planning to migrate from attribute and recipe-based cookbook to custom resource-based cookbook.
+Most recipes will be deprecated after providing custom resources.
+
+
+# Usage
+
 If you are fine with using the public NTP servers you can simply include `chrony_ii` in your node's `run_list`:
 
 ```json
@@ -47,48 +109,16 @@ If you are fine with using the public NTP servers you can simply include `chrony
   ]
 }
 ```
+
 If you need to control your configuration use a role.
 
-##### Sample attribute set for chrony.conf
 
-```ruby
-debian_attr = {
-  'pool' => [
-    '0.debian.pool.ntp.org iburst',
-    '1.debian.pool.ntp.org iburst',
-    '2.debian.pool.ntp.org iburst',
-    '3.debian.pool.ntp.org iburst'
-  ],
-  'initstepslew' => '30 0.debian.pool.ntp.org 1.debian.pool.ntp.org',
-  'keyfile' => '/etc/chrony/chrony.keys',
-  'commandkey' => '1',
-  'driftfile' => '/var/lib/chrony/chrony.drift',
-  'log' => 'tracking measurements statistics',
-  'logdir' => '/var/log/chrony',
-  'maxupdateskew' => '100.0',
-  'dumponexit' => '',
-  'dumpdir' => '/var/lib/chrony',
-  'local' => 'stratum 10',
-  'allow' => [
-    '10/8',
-    '192.168/16',
-    '172.16/12'
-  ],
-  'logchange' => '0.5',
-  'rtconutc' => ''
-}
-```
+# License and Maintainer
 
-Contributing
-------------
+Maintainer:: Tomoya Kabe (<kabe@elastic-infra.com>)
 
-1. Fork the repository on Github
-2. Create a named feature branch (like `add_component_x`)
-3. Write your change
-4. Write tests for your change (if applicable)
-5. Run the tests, ensuring they all pass
-6. Submit a Pull Request using Github
+Source:: https://github.com/elastic-infra/chrony_ii
 
-License and Authors
--------------------
-Authors: Tomoya Kabe
+Issues:: https://github.com/elastic-infra/chrony_ii/issues
+
+License:: MIT
