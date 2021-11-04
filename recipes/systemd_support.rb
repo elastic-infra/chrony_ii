@@ -2,11 +2,11 @@
 
 #
 # Cookbook:: chrony_ii
-# Recipe:: service
+# Recipe:: systemd_support
 #
 # The MIT License (MIT)
 #
-# Copyright:: 2018, Tomoya Kabe
+# Copyright:: 2021, Tomoya Kabe
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -27,15 +27,12 @@
 # THE SOFTWARE.
 
 # <
-# Configures chrony service.
+# Provides supporting resources for systemd
 # >
 
-service 'chrony-daemon' do
-  service_name value_for_platform_family(
-    'rhel' => 'chronyd',
-    'amazon' => 'chronyd',
-    'debian' => 'chrony'
-  )
-  supports restart: true, status: true, reload: true
-  action %i(enable start)
+if systemd?
+  execute 'chronyd-systemd-daemon-reload' do
+    command 'systemctl daemon-reload'
+    action :nothing
+  end
 end
