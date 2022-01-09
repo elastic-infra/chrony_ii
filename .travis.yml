@@ -6,6 +6,7 @@ addons:
   apt:
     sources:
       - sourceline: "deb https://packages.chef.io/repos/apt/current bionic main"
+        key_url: 'https://packages.chef.io/chef.asc'
     packages:
       - chef-workstation
 
