@@ -1,5 +1,22 @@
 # Changelog
 
+## [v0.5.2](https://github.com/elastic-infra/chrony_ii/tree/v0.5.2) (2022-02-02)
+
+[Full Changelog](https://github.com/elastic-infra/chrony_ii/compare/v0.5.1...v0.5.2)
+
+**Merged pull requests:**
+
+- Release instruction [\#22](https://github.com/elastic-infra/chrony_ii/pull/22) ([limitusus](https://github.com/limitusus))
+
+## [v0.5.1](https://github.com/elastic-infra/chrony_ii/tree/v0.5.1) (2022-02-02)
+
+[Full Changelog](https://github.com/elastic-infra/chrony_ii/compare/v0.5.0...v0.5.1)
+
+**Merged pull requests:**
+
+- delivery deprecation [\#21](https://github.com/elastic-infra/chrony_ii/pull/21) ([limitusus](https://github.com/limitusus))
+- Fix Chef GPG key [\#20](https://github.com/elastic-infra/chrony_ii/pull/20) ([limitusus](https://github.com/limitusus))
+
 ## [v0.5.0](https://github.com/elastic-infra/chrony_ii/tree/v0.5.0) (2021-11-04)
 
 [Full Changelog](https://github.com/elastic-infra/chrony_ii/compare/v0.4.0...v0.5.0)
