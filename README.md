@@ -99,6 +99,13 @@ Most recipes will be deprecated after providing custom resources.
 For custom resource's `unified_mode` feature mandatory for Chef 17, the next major update requires Chef >= 15.3.0.
 
 
+# How to release
+
+* Version up: update `metadata.rb`
+* Update Changelog: `github_changelog_generator -u elastic-infra -p chrony_ii --future-release v0.5.2`
+* Release cookbook: `chef exec stove`
+
+
 # Testing
 
 To lint the project
