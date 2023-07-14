@@ -5,9 +5,8 @@ driver:
 
 provisioner:
   name: chef_zero
-  # You may wish to disable always updating cookbooks in CI or other testing environments.
-  # For example:
-  #   always_update_cookbooks: <%= !ENV['CI'] %>
+  chef_omnibus_url: https://omnitruck.cinc.sh/install.sh
+  chef_omnibus_root: /opt/cinc
   always_update_cookbooks: true
   chef_license: accept
 
@@ -18,16 +17,25 @@ platforms:
   - name: ubuntu-16.04
     driver_config:
       run_command: /sbin/init
+      require_chef_omnibus: 15.8.23
   - name: ubuntu-14.04
     driver_config:
       run_command: /sbin/init
+      require_chef_omnibus: 15.2.20
       provision_command:
         - update-rc.d ssh defaults
         - mv /sbin/initctl.distrib /sbin/initctl
+        - sed -i -e '/^mozilla\/DST_Root_CA_X3\.crt$/d' /etc/ca-certificates.conf
+        - rm /etc/ssl/certs/DST_Root_CA_X3.pem
+        - curl -k -o /usr/local/share/ca-certificates/ISRG_Root_X1.crt https://letsencrypt.org/certs/isrgrootx1.pem.txt
+        - update-ca-certificates
+    provisioner:
+      chef_client_path: /opt/cinc/bin/cinc-client
   - name: centos-7
     driver_config:
       image: centos/systemd
       run_command: /usr/sbin/init
+      require_chef_omnibus: 15.8.23
       provision_command:
         - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
         - systemctl enable sshd.service
@@ -36,10 +44,24 @@ platforms:
       image: amazonlinux:1
       platform: centos
       privileged: true
-  - name: debian-9
+      require_chef_omnibus: 15.8.23
+  - name: amazonlinux2023
+    driver_config:
+      platform: centosstream
+      image: public.ecr.aws/amazonlinux/amazonlinux:2023
+      run_command: /sbin/init
+      provision_command:
+        - yum install -y libxcrypt-compat
+        - dnf install -y crypto-policies-scripts
+        - update-crypto-policies --set LEGACY
+    provisioner:
+      chef_omnibus_install_options: '-l http://packages.cinc.sh/files/stable/cinc/17.10.0/amazon/2022/cinc-17.10.0-1.amazon2.x86_64.rpm'
+    transport:
+      name: ssh
+  - name: debian-11
     driver_config:
       run_command: /bin/systemd
-  - name: debian-8
+  - name: debian-10
     driver_config:
       run_command: /sbin/init
 
@@ -64,3 +86,4 @@ suites:
         amazon_time_sync_service: true
     includes:
       - amazonlinux
+      - amazonlinux2023
