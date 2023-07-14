@@ -27,7 +27,7 @@
 # THE SOFTWARE.
 
 # Should only run on amazon
-if platform_family?('amazon')
+if platform_family?('amazon') && node['platform_version'].to_f < 2023
   file '/etc/yum.conf' do
     f = Chef::Util::FileEdit.new(path)
     f.search_file_replace_line(/^#releasever=latest$/, 'releasever=latest')

@@ -74,6 +74,32 @@ amazon_attr = {
   'logdir' => '/var/log/chrony',
 }
 
+amazon_2023_attrs = {
+  'pool' => [
+    '0.amazon.pool.ntp.org iburst',
+    '1.amazon.pool.ntp.org iburst',
+    '2.amazon.pool.ntp.org iburst',
+    '3.amazon.pool.ntp.org iburst',
+  ],
+  'initstepslew' => '30 0.amazon.pool.ntp.org 1.amazon.pool.ntp.org',
+  'stratumweight' => '0',
+  'driftfile' => '/var/lib/chrony/drift',
+  'rtcsync' => '',
+  'makestep' => '10 3',
+  'bindcmdaddress' => [
+    '127.0.0.1',
+    '::1',
+  ],
+  'keyfile' => '/etc/chrony.keys',
+  'noclientlog' => '',
+  'logchange' => '0.5',
+  'log' => 'measurements statistics tracking',
+  'sourcedir' => '/run/chrony.d /etc/chrony.d',
+  'logdir' => '/var/log/chrony',
+  'confdir' => '/etc/chrony.d',
+  'ntsdumpdir' => '/var/lib/chrony',
+}
+
 # Not in recipe yet
 cookbook_name = 'chrony_ii'
 
@@ -84,7 +110,7 @@ default[cookbook_name]['config'] = case node['platform_family']
                                    when 'rhel'
                                      redhat_attr
                                    when 'amazon'
-                                     amazon_attr
+                                     node['platform_version'].to_f >= 2023 ? amazon_2023_attrs : amazon_attr
                                    end
 
 # <> Whether to use [Amazon Time Sync Service](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/set-time.html#configure-amazon-time-service).
