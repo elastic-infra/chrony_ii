@@ -1,5 +1,13 @@
 # Changelog
 
+## [v0.6.0](https://github.com/elastic-infra/chrony_ii/tree/v0.6.0) (2023-07-14)
+
+[Full Changelog](https://github.com/elastic-infra/chrony_ii/compare/v0.5.2...v0.6.0)
+
+**Merged pull requests:**
+
+- Add attribute for AL2023 [\#23](https://github.com/elastic-infra/chrony_ii/pull/23) ([limitusus](https://github.com/limitusus))
+
 ## [v0.5.2](https://github.com/elastic-infra/chrony_ii/tree/v0.5.2) (2022-02-02)
 
 [Full Changelog](https://github.com/elastic-infra/chrony_ii/compare/v0.5.1...v0.5.2)
