@@ -50,6 +50,32 @@ redhat_attr = {
   'logdir' => '/var/log/chrony',
 }
 
+centos_9_attrs = {
+  'pool' => [
+    '0.amazon.pool.ntp.org iburst',
+    '1.amazon.pool.ntp.org iburst',
+    '2.amazon.pool.ntp.org iburst',
+    '3.amazon.pool.ntp.org iburst',
+  ],
+  'initstepslew' => '30 0.amazon.pool.ntp.org 1.amazon.pool.ntp.org',
+  'stratumweight' => '0',
+  'driftfile' => '/var/lib/chrony/drift',
+  'rtcsync' => '',
+  'makestep' => '1.0 3',
+  'bindcmdaddress' => [
+    '127.0.0.1',
+    '::1',
+  ],
+  'keyfile' => '/etc/chrony.keys',
+  'noclientlog' => '',
+  'logchange' => '0.5',
+  'log' => 'measurements statistics tracking',
+  'sourcedir' => '/run/chrony.d /etc/chrony.d',
+  'logdir' => '/var/log/chrony',
+  'confdir' => '/etc/chrony.d',
+  'ntsdumpdir' => '/var/lib/chrony',
+}
+
 amazon_attr = {
   'pool' => [
     '0.amazon.pool.ntp.org iburst',
@@ -108,7 +134,7 @@ default[cookbook_name]['config'] = case node['platform_family']
                                    when 'debian'
                                      debian_attr
                                    when 'rhel'
-                                     redhat_attr
+                                     (centos? && node['platform_version'].to_f >= 9) ? centos_9_attrs : redhat_attr
                                    when 'amazon'
                                      node['platform_version'].to_f >= 2023 ? amazon_2023_attrs : amazon_attr
                                    end
