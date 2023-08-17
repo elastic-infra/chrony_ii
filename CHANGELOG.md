@@ -1,5 +1,13 @@
 # Changelog
 
+## [v0.7.0](https://github.com/elastic-infra/chrony_ii/tree/v0.7.0) (2023-08-17)
+
+[Full Changelog](https://github.com/elastic-infra/chrony_ii/compare/v0.6.0...v0.7.0)
+
+**Merged pull requests:**
+
+- Add attribute for CentOS Stream 9 [\#25](https://github.com/elastic-infra/chrony_ii/pull/25) ([limitusus](https://github.com/limitusus))
+
 ## [v0.6.0](https://github.com/elastic-infra/chrony_ii/tree/v0.6.0) (2023-07-14)
 
 [Full Changelog](https://github.com/elastic-infra/chrony_ii/compare/v0.5.2...v0.6.0)
