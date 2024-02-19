@@ -1,0 +1,32 @@
+---
+name: lint
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  cookstyle:
+    runs-on: ubuntu-latest
+    env:
+      BUNDLE_GEMFILE: ${{ github.workspace }}/.github/Gemfile
+      BUNDLE_APP_CONFIG: ${{ github.workspace }}/.bundle
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0.3
+          bundler-cache: true
+      - uses: r7kamura/rubocop-problem-matchers-action@v1
+      - run: bundle exec cookstyle -a
+        continue-on-error: true
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Auto commit for cookstyle auto correct
+          branch: ${{ github.head_ref }}
