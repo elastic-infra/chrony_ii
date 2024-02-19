@@ -1,5 +1,14 @@
 # Changelog
 
+## [v0.7.1](https://github.com/elastic-infra/chrony_ii/tree/v0.7.1) (2024-02-19)
+
+[Full Changelog](https://github.com/elastic-infra/chrony_ii/compare/v0.7.0...v0.7.1)
+
+**Merged pull requests:**
+
+- Ignore `doc` directory during cookbook upload [\#26](https://github.com/elastic-infra/chrony_ii/pull/26) ([shoekstra](https://github.com/shoekstra))
+- GitHub Workflow [\#24](https://github.com/elastic-infra/chrony_ii/pull/24) ([limitusus](https://github.com/limitusus))
+
 ## [v0.7.0](https://github.com/elastic-infra/chrony_ii/tree/v0.7.0) (2023-08-17)
 
 [Full Changelog](https://github.com/elastic-infra/chrony_ii/compare/v0.6.0...v0.7.0)
